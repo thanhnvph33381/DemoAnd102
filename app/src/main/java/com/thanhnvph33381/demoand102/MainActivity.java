@@ -2,8 +2,11 @@ package com.thanhnvph33381.demoand102;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,35 +21,31 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 // 1. Khai báo đối tượng
-    CatDAO catDAO;
-    String TAG="xxxxxx";
-
+Button btn_category, btn_product;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+        btn_category=findViewById(R.id.btn_category);
+        btn_product=findViewById(R.id.btn_product);
+        btn_category.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this,Category.class);
+                startActivity(i);
+            }
         });
-        catDAO = new CatDAO(this);
-        CatDTO objcat = new CatDTO();
-        objcat.setName("Oto");
-        //ghi vao CSDL
-        int kq = catDAO .AddRow(objcat);
-        if (kq==-1){
-            Log.d(TAG , "onCreate: Loi khong them duoc");
-            }else {
-            Log.d(TAG , "onCreate: Them thanh cong id = "+kq);
-        }
-        //---- lấy danh sách ----//
-        ArrayList<CatDTO> listCat = catDAO.getList();
-        //dùng vòng lặp for để xem kết quả
-        for(int i = 0; i < listCat.size(); i++){
-            
-            Log.d(TAG , "onCreate: phan tu thu "+ i +"la:" + listCat.get(i).toString());
-        }
+        btn_product.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, Product.class);
+                startActivity(i);
+
+            }
+        });
+
     }
+
+
 }

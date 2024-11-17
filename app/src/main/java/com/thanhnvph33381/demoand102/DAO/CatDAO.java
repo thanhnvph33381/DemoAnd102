@@ -20,13 +20,13 @@ public class CatDAO {
         db = dbHelper.getWritableDatabase();
     }
     // hàm thêm dữ liệu
-    public int AddRow (CatDTO objCat){
+    public int AddRowCat (CatDTO objCat){
         ContentValues values = new ContentValues();
         values.put("name", objCat.getName());
         int kq= (int) db.insert("tb_cat", null, values);
         return kq;
     }
-    public ArrayList<CatDTO> getList(){
+    public ArrayList<CatDTO> getListCat(){
         ArrayList<CatDTO> list = new ArrayList<>();
         String sql = "select id, name from tb_cat";
         Cursor cursor = db.rawQuery(sql, null);
@@ -49,7 +49,7 @@ public class CatDAO {
         }
         return list;
     }
-    public CatDTO getOneById( int id){
+    public CatDTO getOneByIdCat( int id){
         CatDTO objCat = null;
         String [] params = { String.valueOf( id ) };
         Cursor c = db.rawQuery("SELECT id, name FROM tb_cat WHERE id = ? ", params);
@@ -60,7 +60,7 @@ public class CatDAO {
         }
         return  objCat;
     }
-    public boolean updateRow(CatDTO objCat){
+    public boolean updateRowCat(CatDTO objCat){
         // tạo đối tượng truyền dữ liệu vào bảng
         ContentValues v = new ContentValues();
         v.put("name", objCat.getName() );
@@ -70,7 +70,7 @@ public class CatDAO {
         long kq = db.update("tb_cat", v,"id = ?", dieu_kien );
         return kq > 0; // nếu update thành công thì kq >0
     }
-    public boolean deleteRow (CatDTO objCat){
+    public boolean deleteRowCat (CatDTO objCat){
         // tạo đk update
         String [] dieu_kien = { String.valueOf(  objCat.getId()  ) };
         long kq = db.delete("tb_cat", "id = ?", dieu_kien );

@@ -1,6 +1,7 @@
 package com.thanhnvph33381.demoand102.Adapter;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.view.LayoutInflater;
@@ -35,7 +36,8 @@ public class CatAdapter extends RecyclerView.Adapter<CatAdapter.ViewHolderCat>{
     @NonNull
     @Override
     public ViewHolderCat onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = View.inflate(context, R.layout.item_category, null);
+        LayoutInflater inflater=((Activity)context).getLayoutInflater();
+        View view = inflater.inflate(R.layout.item_category, null);
         ViewHolderCat holder = new ViewHolderCat(view);
         return new ViewHolderCat(view);
     }

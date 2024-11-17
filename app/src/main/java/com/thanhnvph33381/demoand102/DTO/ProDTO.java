@@ -6,9 +6,14 @@ public class ProDTO {
     int price;
     int id_cat;
 
-    public String toString() {
-        return "ProDTO{" + "id=" + id + ", name='" + name + '\'' + ", price=" + price + ", id_cat=" + id_cat + '}';
+    public ProDTO() {
+    }
 
+    public ProDTO(int id, String name, int price, int id_cat) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.id_cat = id_cat;
     }
 
     public int getId() {

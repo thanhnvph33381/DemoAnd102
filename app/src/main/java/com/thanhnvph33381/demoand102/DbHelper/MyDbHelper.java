@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 public class MyDbHelper extends SQLiteOpenHelper {
     public MyDbHelper(Context context) {
-        super(context,"QuanLyBanHang.db",null,2);
+        super(context,"QuanLyBanHang.db",null,3);
     }
 
     @Override
@@ -20,7 +20,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
         db.execSQL(sqlCategory);
 
         // Tạo bảng tb_product
-        String sqlProduct = "CREATE TABLE tb_product (" +
+        String sqlProduct = "CREATE TABLE tb_pro (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "name TEXT UNIQUE NOT NULL, " +
                 "price REAL DEFAULT (0.0) NOT NULL, " +
@@ -34,19 +34,19 @@ public class MyDbHelper extends SQLiteOpenHelper {
         }
 
         // Thêm dữ liệu mẫu vào bảng tb_product
-        db.execSQL("INSERT INTO tb_product (name, price, id_cat) VALUES ('iPhone', 999.99, 1);");
-        db.execSQL("INSERT INTO tb_product (name, price, id_cat) VALUES ('Áo thun', 19.99, 2);");
-        db.execSQL("INSERT INTO tb_product (name, price, id_cat) VALUES ('Lego', 49.99, 3);");
-        db.execSQL("INSERT INTO tb_product (name, price, id_cat) VALUES ('Bánh quy', 4.99, 4);");
-        db.execSQL("INSERT INTO tb_product (name, price, id_cat) VALUES ('Nồi cơm điện', 79.99, 5);");
+        db.execSQL("INSERT INTO tb_pro (name, price, id_cat) VALUES ('iPhone', 999.99, 1);");
+        db.execSQL("INSERT INTO tb_pro (name, price, id_cat) VALUES ('Áo thun', 19.99, 2);");
+        db.execSQL("INSERT INTO tb_pro (name, price, id_cat) VALUES ('Lego', 49.99, 3);");
+        db.execSQL("INSERT INTO tb_pro (name, price, id_cat) VALUES ('Bánh quy', 4.99, 4);");
+        db.execSQL("INSERT INTO tb_pro (name, price, id_cat) VALUES ('Nồi cơm điện', 79.99, 5);");
     }
 
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         if (i != i1) {
-            sqLiteDatabase.execSQL("DROP TABLE IF EXISTS tb_Cat");
-            sqLiteDatabase.execSQL("DROP TABLE IF EXISTS tb_Product");
+            sqLiteDatabase.execSQL("DROP TABLE IF EXISTS tb_cat");
+            sqLiteDatabase.execSQL("DROP TABLE IF EXISTS tb_pro");
             onCreate(sqLiteDatabase);
         }
     }

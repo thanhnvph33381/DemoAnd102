@@ -94,7 +94,7 @@ public class CatAdapter extends RecyclerView.Adapter<CatAdapter.ViewHolderCat>{
 
     @Override
     public int getItemCount() {
-        return 0;
+        return list.size();
     }
 
     public static class ViewHolderCat extends RecyclerView.ViewHolder {

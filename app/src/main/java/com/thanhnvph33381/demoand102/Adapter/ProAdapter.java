@@ -46,7 +46,7 @@ public class ProAdapter extends RecyclerView.Adapter<ProAdapter.ViewHolderPro> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolderPro holder, int position) {
         holder.txttensp.setText(list.get(position).getName());
-        holder.txtgiasp.setText(list.get(position).getPrice());
+        holder.txtgiasp.setText(String.valueOf(list.get(position).getPrice())); // Đúng
         ProDTO objPro = list.get(position);
         holder.btn_sua_product.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,7 +95,7 @@ public class ProAdapter extends RecyclerView.Adapter<ProAdapter.ViewHolderPro> {
 
     @Override
     public int getItemCount() {
-        return 0;
+        return list.size();
     }
 
     public static class ViewHolderPro extends RecyclerView.ViewHolder {
@@ -105,6 +105,8 @@ public class ProAdapter extends RecyclerView.Adapter<ProAdapter.ViewHolderPro> {
             super(itemView);
             txttensp = itemView.findViewById(R.id.txttensp);
             txtgiasp = itemView.findViewById(R.id.txtgiasp);
+            btn_sua_product = itemView.findViewById(R.id.btn_sua_product);
+            btn_xoa_product = itemView.findViewById(R.id.btn_xoa_product);
 
         }
     }
@@ -118,7 +120,7 @@ public class ProAdapter extends RecyclerView.Adapter<ProAdapter.ViewHolderPro> {
         EditText edt_gia = view.findViewById(R.id.edt_gia);
         Button btn_save_product = view.findViewById(R.id.btn_save_product);
         edt_ten.setText(objPro.getName());
-        edt_gia.setText(objPro.getPrice());
+        edt_gia.setText(String.valueOf(objPro.getPrice()));
         btn_save_product.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
